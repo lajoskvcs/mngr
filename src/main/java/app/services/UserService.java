@@ -30,6 +30,11 @@ public class UserService implements UserServiceI {
     }
 
     @Override
+    public User createUser(User user) {
+        return userDAO.createUser(user);
+    }
+
+    @Override
     public User updateUser(int userId, User user) {
         return userDAO.updateUser(userId, user);
     }

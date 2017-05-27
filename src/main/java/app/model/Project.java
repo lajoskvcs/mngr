@@ -19,6 +19,26 @@ public class Project {
     private Collection<Task> tasks;
     private Set<User> users = new HashSet<User>(0);
 
+    private double projectStatus;
+    private boolean isDue;
+
+    @Transient
+    public double getProjectStatus() {
+        double allTasks = (double) tasks.size();
+        double doneTasks = (double) tasks.stream().filter(
+                task -> {
+                    return task.getStatus() == 2;
+                }
+        ).count();
+        return (doneTasks / allTasks * 100);
+    }
+
+    @Transient
+    public boolean isDue() {
+        LocalDate now = LocalDate.now();
+        return (dueDate.isBefore(now));
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "id")
@@ -71,7 +91,7 @@ public class Project {
         this.users = users;
     }
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JsonIgnore
     public Collection<Task> getTasks() {
         return tasks;

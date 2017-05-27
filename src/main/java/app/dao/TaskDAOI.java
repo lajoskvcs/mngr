@@ -7,6 +7,9 @@ import app.model.Task;
 import java.util.Collection;
 
 public interface TaskDAOI {
+
+    public Collection<Task> findAllByUserId(int userId);
+
     public Collection<Task> findAll(int projectId);
 
     public Task findById(int taskId);

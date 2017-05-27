@@ -14,4 +14,6 @@ public interface ProjectServiceI {
     public Project updateProject(int projectId, Project project);
 
     public Project deleteProject(int projectId);
+
+    public int countAll(int userId);
 }

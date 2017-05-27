@@ -2,23 +2,22 @@ package app.controller;
 
 import app.manager.CustomUserDetailsManager;
 import app.model.User;
-import app.services.UserService;
 import app.services.UserServiceI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
+import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.Response;
 
+/**
+ * The REST Controller what handles authentication requests
+ */
 @RestController
 @RequestMapping("/users")
 public class AuthController {
@@ -27,12 +26,21 @@ public class AuthController {
     @Autowired
     private UserServiceI userService;
 
-    @RequestMapping("/register/{userName}/{password}")
-    public String register(@PathVariable("userName") String userName,
-                           @PathVariable("password") String password) {
-
-        return "Registration successful";
+    /**
+     * Creates a new {@link app.model.User User} with the given parameters
+     * @param user The {@link app.model.User User} from RequestBody
+     * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the created {@link app.model.User User}
+     */
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<User> register(@RequestBody User user) {
+        User createdUser = userService.createUser(user);
+        return ResponseEntity.ok(createdUser);
     }
+
+    /**
+     * Returns the currently authenticated {@link app.model.User User}
+     * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the currently authenticated {@link app.model.User User}
+     */
     @RequestMapping(value = "/current", method = RequestMethod.GET)
     public ResponseEntity<User> getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

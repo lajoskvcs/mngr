@@ -22,14 +22,14 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Collection<Task>> findAll() {
-        logger.info("[GET] /projects UserID: " + 1);
+        logger.info("[GET] /tasks UserID: " + 1);
         Collection<Task> tasks = taskService.findAll(1);
         return ResponseEntity.ok(tasks);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<Task> findById(@PathVariable("id") int id) {
-        logger.info("[GET] /projects/"+id+" UserID: " + 1);
+        logger.info("[GET] /tasks/"+id+" UserID: " + 1);
         Task task = taskService.findById(id);
         return ResponseEntity.ok(task);
     }
@@ -51,7 +51,7 @@ public class TaskController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
-        logger.info("[DELETE] /projects/"+id+" UserID: " + 1);
+        logger.info("[DELETE] /tasks/"+id+" UserID: " + 1);
         Task project = taskService.deleteTask(id);
         return ResponseEntity.ok(project);
     }

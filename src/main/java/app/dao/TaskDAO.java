@@ -21,6 +21,20 @@ public class TaskDAO implements TaskDAOI {
     }
 
     @Override
+    public Collection<Task> findAllByUserId(int userId) {
+        Session session = openSession();
+
+        Query allTasksQuery = session.createQuery(
+                "FROM Task t where t.project.id in (select id FROM Project where id in(select p.id From Project p join p.users u where u.id = :userId))"
+        );
+        allTasksQuery.setParameter("userId", userId);
+
+        Collection<Task> allTasks = allTasksQuery.getResultList();
+
+        return allTasks;
+    }
+
+    @Override
     public Collection<Task> findAll(int projectId) {
         Session session = openSession();
 

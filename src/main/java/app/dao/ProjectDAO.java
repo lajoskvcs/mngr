@@ -29,8 +29,8 @@ public class ProjectDAO implements ProjectDAOI {
     public Collection<Project> findAll(int userId) {
         Session session = openSession();
 
-        Query allProjectsQuery = session.createQuery("FROM Project");
-        //allProjectsQuery.setParameter("userId", userId);
+        Query allProjectsQuery = session.createQuery("FROM Project where id in(select p.id From Project p join p.users u where u.id = :userId)");
+        allProjectsQuery.setParameter("userId", userId);
 
         List<Project> allProjects = allProjectsQuery.getResultList();
 

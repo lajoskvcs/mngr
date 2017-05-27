@@ -2,6 +2,9 @@ package app.services;
 
 import app.dao.TaskDAO;
 import app.model.Task;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +16,11 @@ import java.util.Collection;
 public class TaskService implements TaskServiceI {
     @Autowired
     private TaskDAO taskDAO;
+
+    @Override
+    public Collection<Task> findAllByUserId(int userId) {
+        return taskDAO.findAllByUserId(userId);
+    }
 
     @Override
     public Collection<Task> findAll(int projectId) {
@@ -37,5 +45,32 @@ public class TaskService implements TaskServiceI {
     @Override
     public Task deleteTask(int taskId) {
         return taskDAO.deleteTask(taskId);
+    }
+
+    @Override
+    public int findInPlanTasks(int userId) {
+        Collection<Task> tasks = findAllByUserId(userId);
+        return (int) tasks.stream()
+                .filter(task -> {
+                   return task.getStatus() == 0;
+                }).count();
+    }
+
+    @Override
+    public int findInProgressTasks(int userId) {
+        Collection<Task> tasks = findAllByUserId(userId);
+        return (int) tasks.stream()
+                .filter(task -> {
+                    return task.getStatus() == 1;
+                }).count();
+    }
+
+    @Override
+    public int findDoneTasks(int userId) {
+        Collection<Task> tasks = findAllByUserId(userId);
+        return (int) tasks.stream()
+                .filter(task -> {
+                    return task.getStatus() == 2;
+                }).count();
     }
 }

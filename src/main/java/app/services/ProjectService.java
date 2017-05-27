@@ -40,4 +40,9 @@ public class ProjectService implements ProjectServiceI {
         return projectDAO.deleteProject(projectId);
     }
 
+    @Override
+    public int countAll(int userId) {
+        Collection<Project> projects = findAll(userId);
+        return (int) projects.stream().count();
+    }
 }
