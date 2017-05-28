@@ -13,22 +13,31 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * The Repository class for manipulating {@link app.model.Project Projects} in the database
+ * The Repository class for manipulating {@link app.model.Project Projects} in the database.
  */
 @Repository
 public class ProjectDAO implements ProjectDAOI {
+    /**
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
+     */
     @Autowired
     protected SessionFactory sessionFactory;
 
+    /**
+     * This method returns teh current Session.
+     * @return The current Session
+     */
     private Session openSession() {
         return sessionFactory.getCurrentSession();
     }
 
+    @Override
     public Project addProject(Project project) {
         openSession().save(project);
         return project;
     }
 
+    @Override
     public Collection<Project> findAll(int userId) {
         Session session = openSession();
 
@@ -40,6 +49,7 @@ public class ProjectDAO implements ProjectDAOI {
         return allProjects;
     }
 
+    @Override
     public Project findById(int projectId) {
         Session session = openSession();
 
@@ -55,6 +65,7 @@ public class ProjectDAO implements ProjectDAOI {
         return project;
     }
 
+    @Override
     public Project updateProject(int projectId, Project project) {
         Project projectToUpdate = findById(projectId);
 
@@ -68,6 +79,7 @@ public class ProjectDAO implements ProjectDAOI {
         return projectToUpdate;
     }
 
+    @Override
     public Project deleteProject(int projectId) {
         Project project = findById(projectId);
         if (project == null) {

@@ -8,9 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
+/**
+ * This {@code Service} class manipulates {@link app.model.Task Tasks} int the database.
+ */
 @Service
 @Transactional
 public class TaskService implements TaskServiceI {
+
+    /**
+     * This variable autowire the <code>TaskDAO</code>.
+     */
     @Autowired
     private TaskDAO taskDAO;
 

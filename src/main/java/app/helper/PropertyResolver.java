@@ -12,6 +12,9 @@ import java.util.Properties;
  * The helper class for resolve <code>.properties</code> files.
  */
 public class PropertyResolver {
+    /**
+     * This variable inject the {@code Logger} into the {@code Class}.
+     */
     private static Logger logger = LoggerFactory.getLogger(PropertyResolver.class);
 
     /**

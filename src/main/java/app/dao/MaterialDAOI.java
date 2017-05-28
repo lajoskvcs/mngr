@@ -17,7 +17,7 @@ public interface MaterialDAOI {
     public Material findById(int materialId);
 
     /**
-     * This method returns a Collection of {@link app.model.Material Materials} with the given {@code taskId}
+     * This method returns a Collection of {@link app.model.Material Materials} with the given {@code taskId}.
      * @param taskId The id of the {@link app.model.Task}
      * @return The Collection of the {@link app.model.Material Materials}
      */

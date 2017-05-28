@@ -12,11 +12,18 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class represents a User in the {@code Spring Security} terminology.
+ */
 public class CustomUserDetailsService implements UserDetailsService {
 
+    /**
+     * This variable inject the {@link app.model.User User} model's DAO layer into this service.
+     */
     @Autowired
     private UserDAOI userDAO;
 
+    @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
 

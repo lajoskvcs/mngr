@@ -17,14 +17,14 @@ import java.util.List;
 @Repository
 public class MaterialDAO implements MaterialDAOI {
     /**
-     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
      */
     @Autowired
     protected SessionFactory sessionFactory;
 
     /**
-     * This method is a shorthand for session getting.
-     * @return the current session
+     * This method returns teh current Session.
+     * @return The current Session
      */
     private Session openSession() {
         return sessionFactory.getCurrentSession();

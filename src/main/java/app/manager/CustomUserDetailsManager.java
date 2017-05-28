@@ -17,6 +17,9 @@ import java.util.Collections;
  * It needed for the authorization process.
  */
 public class CustomUserDetailsManager implements UserDetailsManager {
+    /**
+     * This method autowire the {@code UserService}.
+     */
     @Autowired
     UserServiceI userService;
 
@@ -38,32 +41,15 @@ public class CustomUserDetailsManager implements UserDetailsManager {
         );
     }
 
-    /**
-     * This method is not implemented.
-     * @param userDetails The object what Spring Security uses for User handling
-     */
     @Override
     public void createUser(UserDetails userDetails) {}
 
-    /**
-     * This method is not implemented.
-     * @param userDetails The object what Spring Security uses for User handling
-     */
     @Override
     public void updateUser(UserDetails userDetails) {}
 
-    /**
-     * This method is not implemented.
-     * @param s The username of the user
-     */
     @Override
     public void deleteUser(String s) {}
 
-    /**
-     * This method is not implemented.
-     * @param s The old password
-     * @param s1 The new password
-     */
     @Override
     public void changePassword(String s, String s1) {}
 

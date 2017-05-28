@@ -9,13 +9,21 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.Query;
 
 /**
- * The Repository class for manipulating {@link app.model.Note Notes} in the database
+ * The Repository class for manipulating {@link app.model.Note Notes} in the database.
  */
 @Repository
 public class NoteDAO implements NoteDAOI {
+
+    /**
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
+     */
     @Autowired
     protected SessionFactory sessionFactory;
 
+    /**
+     * This method returns teh current Session.
+     * @return The current Session
+     */
     private Session openSession() {
         return sessionFactory.getCurrentSession();
     }

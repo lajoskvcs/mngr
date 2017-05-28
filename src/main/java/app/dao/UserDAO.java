@@ -11,13 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Repository class for manipulating {@link app.model.User Users} in the database
+ * The Repository class for manipulating {@link app.model.User Users} in the database.
  */
 @Repository
 public class UserDAO implements UserDAOI {
+
+    /**
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
+     */
     @Autowired
     SessionFactory sessionFactory;
 
+    /**
+     * This method returns teh current Session.
+     * @return The current Session
+     */
     private Session openSession() {
         return sessionFactory.getCurrentSession();
     }

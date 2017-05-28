@@ -8,9 +8,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
+/**
+ * The Service class for manipulating {@link app.model.Material Materials} in the database.
+ */
 @Service
 @Transactional
 public class MaterialService implements MaterialServiceI {
+    /**
+     * This variable autowire the <code>MaterialDAO</code>.
+     */
     @Autowired
     MaterialDAO materialDAO;
 

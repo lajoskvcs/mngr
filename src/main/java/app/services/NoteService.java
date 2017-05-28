@@ -6,10 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * This {@code Service} manipulates the {@link app.model.Note Notes} in the database.
+ */
 @Service
 @Transactional
 public class NoteService implements NoteServiceI {
 
+    /**
+     * This variable autowire the <code>NoteDAO</code>.
+     */
     @Autowired
     private NoteDAO noteDAO;
 

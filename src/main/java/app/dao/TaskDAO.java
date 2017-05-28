@@ -10,13 +10,20 @@ import javax.persistence.Query;
 import java.util.Collection;
 
 /**
- * The Repository class for manipulating {@link app.model.Task Tasks} in the database
+ * The Repository class for manipulating {@link app.model.Task Tasks} in the database.
  */
 @Repository
 public class TaskDAO implements TaskDAOI {
+    /**
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
+     */
     @Autowired
     protected SessionFactory sessionFactory;
 
+    /**
+     * This method returns teh current Session.
+     * @return The current Session
+     */
     private Session openSession() {
         return sessionFactory.getCurrentSession();
     }

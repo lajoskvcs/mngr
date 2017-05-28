@@ -8,9 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
+/**
+ * The Service class for manipulating {@link app.model.Project Projects}.
+ */
 @Service
 @Transactional
 public class ProjectService implements ProjectServiceI {
+
+    /**
+     * This variable autowire the <code>ProjectDAO</code>.
+     */
     @Autowired
     private ProjectDAO projectDAO;
 

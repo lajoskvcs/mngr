@@ -26,7 +26,7 @@ public interface NoteDAOI {
     public Note addNote(Note note);
 
     /**
-     * This method updates a {@link app.model.Note} with the given id
+     * This method updates a {@link app.model.Note} with the given id.
      * @param noteId The id of the {@link app.model.Note} to be updated
      * @param note The {@link app.model.Note} object what contains teh changes
      * @return The updated {@link app.model.Note}
@@ -34,7 +34,7 @@ public interface NoteDAOI {
     public Note updateNote(int noteId, Note note);
 
     /**
-     * This method deletes a {@link app.model.Note} with the given id
+     * This method deletes a {@link app.model.Note} with the given id.
      * @param noteId The id of the {@link app.model.Note} to be deleted
      * @return The deleted {@link app.model.Note}
      */
