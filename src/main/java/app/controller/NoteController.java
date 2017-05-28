@@ -11,17 +11,24 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 /**
- * The REST Controller what handles requests about {@link app.model.Note Note} objects
+ * The REST Controller what handles requests about {@link app.model.Note Note} objects.
  */
 @RestController
 @RequestMapping(value = "/projects")
 public class NoteController {
+    /**
+     * This variable inject the {@code Logger} into the {@code Controller}.
+     */
     Logger logger = LoggerFactory.getLogger(NoteController.class);
+
+    /**
+     * This variable autowires the {@link app.services.NoteService} into the {@code Controller}.
+     */
     @Autowired
     private NoteServiceI noteService;
 
     /**
-     * Returns the {@link app.model.Note Note} for the selected {@link app.model.Project Project}
+     * Returns the {@link app.model.Note Note} for the selected {@link app.model.Project Project}.
      * @param projectId The id of the {@link app.model.Project Project}
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the {@link app.model.Note Note} object
      */
@@ -33,7 +40,7 @@ public class NoteController {
     }
 
     /**
-     * Creates a Note for the selected Project
+     * Creates a Note for the selected Project.
      * @param id The id of the Project
      * @param postedNote The Note what should be save in to the database
      * @return A ResponseEntity filled with the created Note
@@ -52,7 +59,7 @@ public class NoteController {
     }
 
     /**
-     * Updates the {@link app.model.Note Note} for the {@link app.model.Project Project}
+     * Updates the {@link app.model.Note Note} for the {@link app.model.Project Project}.
      * @param id id of the {@link app.model.Project Project}
      * @param patchedNote The {@link app.model.Note Note} what should be saved in to the database
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the updated {@link app.model.Note Note}

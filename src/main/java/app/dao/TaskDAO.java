@@ -39,7 +39,7 @@ public class TaskDAO implements TaskDAOI {
     public Collection<Task> findAll(int projectId) {
         Session session = openSession();
 
-        Query allTasksQuery = session.createQuery("FROM Task where project_id = :projectId");
+        Query allTasksQuery = session.createQuery("FROM Task where project_id = :projectId order by priority DESC");
         allTasksQuery.setParameter("projectId", projectId);
 
         Collection<Task> allTasks = allTasksQuery.getResultList();

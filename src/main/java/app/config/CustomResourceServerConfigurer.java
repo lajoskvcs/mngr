@@ -8,13 +8,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
 
 /**
- * This class configures the ResourceServer with the authentication rights
+ * This class configures the ResourceServer with the authentication rights.
  */
 @Configuration
 @EnableResourceServer
 public class CustomResourceServerConfigurer extends ResourceServerConfigurerAdapter {
     /**
-     * This method makes the resource id fro the application
+     * This method makes the resource id fro the application.
      * @param resources The r
      * @throws Exception when no {@code ResourceServerSecurityConfigurer} given
      */
@@ -24,7 +24,7 @@ public class CustomResourceServerConfigurer extends ResourceServerConfigurerAdap
     }
 
     /**
-     * This method configures the http routes with access rights
+     * This method configures the http routes with access rights.
      * @param http The {@code HttpSecurity} object
      * @throws Exception
      */

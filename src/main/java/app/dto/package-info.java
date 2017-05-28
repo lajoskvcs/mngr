@@ -1,4 +1,4 @@
 /**
- * This package contains the Data Transfer Objects
+ * This package contains the Data Transfer Objects.
  */
 package app.dto;

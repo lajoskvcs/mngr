@@ -179,6 +179,12 @@ public class TaskServiceTest {
     }
 
     @Test
+    public void test__findInPlanTasks__should__return__zero() {
+        int inPlanTasks = taskService.findInPlanTasks(13);
+        assertThat(inPlanTasks, is(equalTo(0)));
+    }
+
+    @Test
     public void test__findInProgressTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
         int inProgressTasks = taskService.findInProgressTasks(1);
@@ -186,10 +192,22 @@ public class TaskServiceTest {
     }
 
     @Test
+    public void test__findInProgressTasks__should__return__zero() {
+        int inProgressTasks = taskService.findInProgressTasks(101);
+        assertThat(inProgressTasks, is(equalTo(0)));
+    }
+
+    @Test
     public void test__findDoneTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
         int doneTasks = taskService.findDoneTasks(1);
         assertThat(doneTasks, is(equalTo(1)));
+    }
+
+    @Test
+    public void test__findDoneTasks__should__return__zero() {
+        int doneTasks = taskService.findDoneTasks(1);
+        assertThat(doneTasks, is(equalTo(0)));
     }
 
 }

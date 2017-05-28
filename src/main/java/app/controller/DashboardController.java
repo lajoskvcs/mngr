@@ -5,6 +5,8 @@ import app.model.User;
 import app.services.ProjectServiceI;
 import app.services.TaskServiceI;
 import app.services.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,22 +16,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The REST Controller what handles statistical requests
+ * The REST Controller what handles statistical requests.
  */
 @RestController
 @RequestMapping(value = "/dashboard")
 public class DashboardController {
 
+    /**
+     * This variable inject the {@code Logger} into the {@code Controller}.
+     */
+    Logger logger = LoggerFactory.getLogger(DashboardController.class);
+
+    /**
+     * This variable autowires the {@link app.services.TaskService} into the {@code Controller}.
+     */
     @Autowired
     private TaskServiceI taskService;
 
+    /**
+     * This variable autowires the {@link app.services.ProjectService} into the {@code Controller}.
+     */
     @Autowired
     private ProjectServiceI projectService;
+
+    /**
+     * This variable autowires the {@link app.services.UserService} into the {@code Controller}.
+     */
     @Autowired
     private UserServiceI userService;
 
     /**
-     * Returns statistical datas about {@link app.model.Project Projects} and {@link app.model.Task Tasks}
+     * Returns statistical data about {@link app.model.Project Projects} and {@link app.model.Task Tasks}.
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with a {@link app.dto.Dashboard DashboardDTO}
      */
     @RequestMapping(method = RequestMethod.GET)

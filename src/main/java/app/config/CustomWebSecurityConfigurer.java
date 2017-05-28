@@ -19,17 +19,20 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 /**
- * This configuration class configures the authentication part of the application
+ * This configuration class configures the authentication part of the application.
  */
 @Configuration
 @EnableWebSecurity
 public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    /**
+     * This variable autowires the ClientDetailsService for the Security configuration.
+     */
     @Autowired
     private ClientDetailsService clientDetailsService;
 
     /**
-     * This method builds the authentication manager with the custom UserDetailsManager
+     * This method builds the authentication manager with the custom UserDetailsManager.
      * @param authenticationManagerBuilder The builder class for authentication manager
      * @throws Exception when the builder cant build the manager
      */
@@ -46,7 +49,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * This class makes a Bean for the authentication manager
+     * This class makes a Bean for the authentication manager.
      * @return an authenticationManager
      * @throws Exception when no authenticationManager was built
      */
@@ -81,7 +84,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configures the <code>ApprovalStore</code> with the created <code>TokenStore</code>
+     * Configures the <code>ApprovalStore</code> with the created <code>TokenStore</code>.
      *
      * @param tokenStore the {@code TokenStore} for the {@code ApprovalStore}
      * @return the configured {@code ApprovalStore}
@@ -95,7 +98,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configures and returns a <code>customUserDetailsManager</code>
+     * Configures and returns a <code>customUserDetailsManager</code>.
      *
      * @return the configured <code>customUserDetailsManager</code>
      */

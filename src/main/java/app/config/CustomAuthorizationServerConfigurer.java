@@ -16,16 +16,28 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  */
 @Configuration
 public class CustomAuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
+    /**
+     * This variable autowire the UserDetailsService for the endpoint configuration.
+     */
     @Autowired
     @Qualifier("userDetailsServiceBean")
     private UserDetailsService userDetailsService;
 
+    /**
+     * This variable autowire the application's tokenStore for the endpoint configuration.
+     */
     @Autowired
     private TokenStore tokenStore;
 
+    /**
+     * This variable autowire the UserApprovalHandler for the endpoint configuration.
+     */
     @Autowired
     private UserApprovalHandler userApprovalHandler;
 
+    /**
+     * This variable autowire the AuthenticationManager for the endpoint configuration.
+     */
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;

@@ -46,7 +46,7 @@ public class MNGRConfiguration extends WebMvcConfigurerAdapter{
 
     /**
      * This method returns a {@link org.springframework.orm.hibernate5.HibernateTransactionManager HibernateTransactionManager}
-     * with the configured {@link org.hibernate.SessionFactory SessionFactory}
+     * with the configured {@link org.hibernate.SessionFactory SessionFactory}.
      *
      * @param sessionFactory the {@link org.hibernate.SessionFactory SessionFactory} what the {@link org.springframework.orm.hibernate5.HibernateTransactionManager HibernateTransactionManager} will use
      * @return The configured {@link org.springframework.orm.hibernate5.HibernateTransactionManager HibernateTransactionManager}

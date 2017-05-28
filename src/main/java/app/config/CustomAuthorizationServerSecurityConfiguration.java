@@ -22,6 +22,10 @@ public class CustomAuthorizationServerSecurityConfiguration extends Authorizatio
         http.addFilterBefore(new CorsFilter(corsConfigurationSource()), ChannelProcessingFilter.class);
     }
 
+    /**
+     * This method append settings for CORS requests.
+     * @return The configured UrlBasedCorsConfigurationSource
+     */
     private CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();

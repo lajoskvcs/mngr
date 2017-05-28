@@ -12,15 +12,18 @@ import java.util.List;
 
 
 /**
- * The Repository class for manipulating {@link app.model.Material Materials} in the database
+ * The Repository class for manipulating {@link app.model.Material Materials} in the database.
  */
 @Repository
 public class MaterialDAO implements MaterialDAOI {
+    /**
+     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>
+     */
     @Autowired
     protected SessionFactory sessionFactory;
 
     /**
-     * This method is a shorthand for session getting
+     * This method is a shorthand for session getting.
      * @return the current session
      */
     private Session openSession() {

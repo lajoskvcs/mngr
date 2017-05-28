@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The REST Controller what handles the / route
+ * The REST Controller what handles the / route.
  */
 @RestController
 @RequestMapping(value = "/")
 public class HomeController {
     /**
-     * Returns a String
+     * Returns a String.
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filed with String
      */
     @RequestMapping(method = RequestMethod.GET)

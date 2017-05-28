@@ -17,27 +17,42 @@ import java.net.URI;
 import java.util.Collection;
 
 /**
- * The REST Controller for handling requests for {@link app.model.Project Projects}
+ * The REST Controller for handling requests for {@link app.model.Project Projects}.
  */
 @RestController
 @RequestMapping(value = "/projects")
 public class ProjectController {
+    /**
+     * This variable inject the {@code Logger} into the {@code Controller}.
+     */
     Logger logger = LoggerFactory.getLogger(ProjectController.class);
 
+    /**
+     * This variable autowires the {@link app.services.ProjectService} into the {@code Controller}.
+     */
     @Autowired
     private ProjectServiceI projectService;
 
+    /**
+     * This variable autowires the {@link app.services.UserService} into the {@code Controller}.
+     */
     @Autowired
     private UserServiceI userService;
 
+    /**
+     * This variable autowires the {@link app.services.NoteService} into the {@code Controller}.
+     */
     @Autowired
     private NoteServiceI noteService;
 
+    /**
+     * This variable autowires the {@link app.services.TaskService} into the {@code Controller}.
+     */
     @Autowired
     private TaskServiceI taskService;
 
     /**
-     * Returns with all the {@link app.model.Project Projects} for the currently authenticated {@link app.model.User User}
+     * Returns with all the {@link app.model.Project Projects} for the currently authenticated {@link app.model.User User}.
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the {@link app.model.Project Projects}
      */
     @RequestMapping(method = RequestMethod.GET)
@@ -50,7 +65,7 @@ public class ProjectController {
     }
 
     /**
-     * Finds the {@link app.model.Project Project} with the given {@code id}
+     * Finds the {@link app.model.Project Project} with the given {@code id}.
      * @param id The id of the requested {@link app.model.Project Project}
      * @return The {@link app.model.Project Project} with the given {@code id}
      */
@@ -62,7 +77,8 @@ public class ProjectController {
     }
 
     /**
-     * Returns with all the {@link app.model.Task Tasks} for the currently authenticated {@link app.model.User User}
+     * Returns with all the {@link app.model.Task Tasks} for the currently authenticated {@link app.model.User User}.
+     * @param projectId The id of the selected {@link app.model.Project}
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the {@link app.model.Task Tasks}
      */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/tasks")
@@ -73,7 +89,7 @@ public class ProjectController {
     }
 
     /**
-     * Creates a new {@link app.model.Project Project}
+     * Creates a new {@link app.model.Project Project}.
      * @param postedProject The {@link app.model.Project Project} what should be saved in the database
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the created {@link app.model.Project Project}
      */
@@ -89,7 +105,7 @@ public class ProjectController {
     }
 
     /**
-     * Updates the {@link app.model.Project Project} with the given id
+     * Updates the {@link app.model.Project Project} with the given id.
      * @param id the id of the {@link app.model.Project Project}
      * @param patchedProject The {@link app.model.Project Project} what has updated properties
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the updated {@link app.model.Project Project}
@@ -102,7 +118,7 @@ public class ProjectController {
     }
 
     /**
-     * Deletes the {@link app.model.Project Project} with the given id
+     * Deletes the {@link app.model.Project Project} with the given id.
      * @param id The id of the {@link app.model.Project Project}
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the deleted {@link app.model.Project Project}
      */

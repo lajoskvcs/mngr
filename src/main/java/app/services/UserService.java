@@ -8,9 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+/**
+ * The Service class for manipulating {@link app.model.User Users} in the database.
+ */
 @Service
 @Transactional
 public class UserService implements UserServiceI {
+    /**
+     * This variable inject the {@link app.model.User User} model's DAO layer into this service.
+     */
     @Autowired
     private UserDAO userDAO;
 

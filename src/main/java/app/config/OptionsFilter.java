@@ -6,27 +6,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * This class append HTTP headers for every request
+ * This class append HTTP headers for every request.
  * It is important for OPTIONS request for authentication
  */
 public class OptionsFilter implements Filter {
 
-    /**
-     * This method initializes the filter
-     * @param filterConfig The configurations for the filter
-     * @throws ServletException when the filter can't be initialized
-     */
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {}
 
-    /**
-     * This method append the HTTP headers for the requests.
-     * @param servletRequest The request object
-     * @param servletResponse The response object
-     * @param filterChain The applications filterChain
-     * @throws IOException when the filter got a bad request
-     * @throws ServletException when the servlet fails
-     */
+
     @Override
     public void doFilter(
             ServletRequest servletRequest,
@@ -45,9 +34,6 @@ public class OptionsFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
-    /**
-     * This method destroys the filter
-     */
     @Override
     public void destroy() {}
 }
