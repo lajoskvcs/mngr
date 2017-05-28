@@ -61,6 +61,16 @@ public class TaskServiceTest {
         task2.setPriority(0);
         task2.setTimes(null);
         task2.setProject(project1);
+        Task task4 = new Task();
+        task2.setName("asd");
+        task2.setMaterials(null);
+        task2.setId(4);
+        task2.setHourlySalary(2000);
+        task2.setDescription("asdasdasd");
+        task2.setStatus(1);
+        task2.setPriority(0);
+        task2.setTimes(null);
+        task2.setProject(project1);
 
         Task task3 = new Task();
         task3.setName("asd");
@@ -72,10 +82,22 @@ public class TaskServiceTest {
         task3.setPriority(0);
         task3.setTimes(null);
         task3.setProject(project1);
+        Task task5 = new Task();
+        task3.setName("asd");
+        task3.setMaterials(null);
+        task3.setId(5);
+        task3.setHourlySalary(2000);
+        task3.setDescription("asdasdasd");
+        task3.setStatus(2);
+        task3.setPriority(0);
+        task3.setTimes(null);
+        task3.setProject(project1);
 
         tasks.add(task1);
         tasks.add(task2);
         tasks.add(task3);
+        tasks.add(task4);
+        tasks.add(task5);
 
         project1 = new Project();
         project1.setId(1);
@@ -125,7 +147,7 @@ public class TaskServiceTest {
     }
 
     @Test
-    public void test__addProject__should__return__with__the__created() {
+    public void test__addTask__should__return__with__the__created() {
         when(taskDAO.addTask(task1)).thenReturn(task1);
         Task returnedTask = taskService.addTask(task1);
         assertThat(returnedTask.getDescription(), is(equalTo(task1.getDescription())));
