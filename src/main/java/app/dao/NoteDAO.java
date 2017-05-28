@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 
+/**
+ * The Repository class for manipulating {@link app.model.Note Notes} in the database
+ */
 @Repository
 public class NoteDAO implements NoteDAOI {
     @Autowired

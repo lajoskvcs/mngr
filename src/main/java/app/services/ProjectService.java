@@ -1,7 +1,6 @@
 package app.services;
 
 import app.dao.ProjectDAO;
-import app.dao.ProjectDAOI;
 import app.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

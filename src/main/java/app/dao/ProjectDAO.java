@@ -12,6 +12,9 @@ import javax.persistence.Query;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The Repository class for manipulating {@link app.model.Project Projects} in the database
+ */
 @Repository
 public class ProjectDAO implements ProjectDAOI {
     @Autowired

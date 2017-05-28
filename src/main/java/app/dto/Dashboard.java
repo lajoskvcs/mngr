@@ -1,25 +1,15 @@
 package app.dto;
 
 public class Dashboard {
-    /**
-     * The number of the {@link app.model.Project Projects} for the currently authenticated {@link app.model.User User}
-     */
     private int projectNumber;
-    /**
-     * The number of the {@link app.model.Task Tasks} what are in <code>in plan</code> status for the currently authenticated {@link app.model.User User}
-     */
     private int inPlanTaskNumber;
-    /**
-     * The number of the {@link app.model.Task Tasks} what are in <code>in progress</code> status for the currently authenticated {@link app.model.User User}
-     */
     private int inProgressTaskNumber;
-    /**
-     * The number of the {@link app.model.Task Tasks} what are in <code>done</code> status for the currently authenticated {@link app.model.User User}
-     */
     private int doneTaskNumber;
 
-    public Dashboard() {}
-
+    /**
+     * Returns the number of the {@link app.model.Project Projects} for the currently authenticated {@link app.model.User User}
+     * @return
+     */
     public int getProjectNumber() {
         return projectNumber;
     }
@@ -28,6 +18,10 @@ public class Dashboard {
         this.projectNumber = projectNumber;
     }
 
+    /**
+     * Returns the number of the {@link app.model.Task Tasks} what are in <code>in plan</code> status for the currently authenticated {@link app.model.User User}
+     * @return
+     */
     public int getInPlanTaskNumber() {
         return inPlanTaskNumber;
     }
@@ -36,6 +30,10 @@ public class Dashboard {
         this.inPlanTaskNumber = inPlanTaskNumber;
     }
 
+    /**
+     * Returns the number of the {@link app.model.Task Tasks} what are in <code>in progress</code> status for the currently authenticated {@link app.model.User User}
+     * @return
+     */
     public int getInProgressTaskNumber() {
         return inProgressTaskNumber;
     }
@@ -44,6 +42,10 @@ public class Dashboard {
         this.inProgressTaskNumber = inProgressTaskNumber;
     }
 
+    /**
+     * Returns the number of the {@link app.model.Task Tasks} what are in <code>done</code> status for the currently authenticated {@link app.model.User User}
+     * @return
+     */
     public int getDoneTaskNumber() {
         return doneTaskNumber;
     }

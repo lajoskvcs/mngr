@@ -1,8 +1,10 @@
 package app.dao;
 
-import app.model.Project;
 import app.model.User;
 
+/**
+ * The interface for manipulating {@link app.model.User Users} in the database
+ */
 public interface UserDAOI {
     public User findById(int userId);
     public User findByName(String username);

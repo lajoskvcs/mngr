@@ -2,16 +2,12 @@ package app.controller;
 
 import app.model.Note;
 import app.model.Project;
+import app.model.Task;
 import app.model.User;
-import app.services.NoteServiceI;
-import app.services.ProjectService;
-import app.services.ProjectServiceI;
-import app.services.UserServiceI;
+import app.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +33,9 @@ public class ProjectController {
     @Autowired
     private NoteServiceI noteService;
 
+    @Autowired
+    private TaskServiceI taskService;
+
     /**
      * Returns with all the {@link app.model.Project Projects} for the currently authenticated {@link app.model.User User}
      * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the {@link app.model.Project Projects}
@@ -60,6 +59,17 @@ public class ProjectController {
         logger.info("[GET] /projects/"+id+" UserID: " + 1);
         Project project = projectService.findById(id);
         return ResponseEntity.ok(project);
+    }
+
+    /**
+     * Returns with all the {@link app.model.Task Tasks} for the currently authenticated {@link app.model.User User}
+     * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the {@link app.model.Task Tasks}
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/tasks")
+    public ResponseEntity<Collection<Task>> findAllTaskByProjectId(@PathVariable("id") int projectId) {
+        logger.info("[GET] /tasks ");
+        Collection<Task> tasks = taskService.findAll(projectId);
+        return ResponseEntity.ok(tasks);
     }
 
     /**

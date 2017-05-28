@@ -1,19 +1,14 @@
 package app.controller;
 
-import app.manager.CustomUserDetailsManager;
 import app.model.User;
 import app.services.UserServiceI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.Response;
 
 /**
  * The REST Controller what handles authentication requests

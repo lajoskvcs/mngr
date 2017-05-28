@@ -1,8 +1,10 @@
 package app.dao;
 
 import app.model.Note;
-import org.springframework.stereotype.Repository;
 
+/**
+ * The interface for manipulating {@link app.model.Note Notes} in the database
+ */
 public interface NoteDAOI {
     public Note findById(int noteId);
     public Note findByProjectId(int projectId);

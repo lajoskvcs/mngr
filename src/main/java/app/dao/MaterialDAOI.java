@@ -5,6 +5,9 @@ import app.model.Material;
 
 import java.util.Collection;
 
+/**
+ * The interface for manipulating {@link app.model.Material Materials} in the database
+ */
 public interface MaterialDAOI {
     public Material findById(int materialId);
     public Collection<Material> findAllByTaskId(int taskId);

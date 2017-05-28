@@ -17,19 +17,22 @@ import org.springframework.security.oauth2.provider.approval.TokenStoreUserAppro
 import org.springframework.security.oauth2.provider.request.DefaultOAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
-import javax.sql.DataSource;
-
+/**
+ * This configuration class configures the authentication part of the application
+ */
 @Configuration
 @EnableWebSecurity
 public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private DataSource dataSource;
 
     @Autowired
     private ClientDetailsService clientDetailsService;
 
+    /**
+     * This method builds the authentication manager with the custom UserDetailsManager
+     * @param authenticationManagerBuilder The builder class for authentication manager
+     * @throws Exception when the builder cant build the manager
+     */
     @Autowired
     private void globalUserDetails(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(customUserDetailsManager());
@@ -42,6 +45,11 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("oauth/token").permitAll();
     }
 
+    /**
+     * This class makes a Bean for the authentication manager
+     * @return an authenticationManager
+     * @throws Exception when no authenticationManager was built
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -50,7 +58,6 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /**
      * Returns a {@code TokenStore} for storing authorization tokens.
-     *
      * @return a {@code TokenStore}
      */
     @Bean
@@ -60,7 +67,6 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     /**
      * Returns a configured {@code TokenStoreUserApprovalHandler} using the given {@code TokenStore}.
-     *
      * @param tokenStore the {@code TokenStore} for the {@code TokenStoreUserApprovalHandler}
      * @return the configured {@code TokenStoreUserApprovalHandler}
      */
@@ -75,9 +81,9 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configures and returns an {@code ApprovalStore}.
+     * Configures the <code>ApprovalStore</code> with the created <code>TokenStore</code>
      *
-     * @param tokenStore the {@code TokenStore} for the {@code ApprovalStore} to use
+     * @param tokenStore the {@code TokenStore} for the {@code ApprovalStore}
      * @return the configured {@code ApprovalStore}
      */
     @Bean
@@ -89,9 +95,9 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configures and returns a {@code JdbcUserDetailsManager}.
+     * Configures and returns a <code>customUserDetailsManager</code>
      *
-     * @return the configured {@code JdbcUserDetailsManager}
+     * @return the configured <code>customUserDetailsManager</code>
      */
     @Bean
     @Qualifier("userDetailsServiceBean")

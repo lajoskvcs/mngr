@@ -1,9 +1,7 @@
 package app.services;
 
 
-import app.dao.TaskDAO;
 import app.model.Task;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 

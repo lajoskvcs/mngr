@@ -1,6 +1,5 @@
 package app.dao;
 
-import app.model.Project;
 import app.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +10,9 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Repository class for manipulating {@link app.model.User Users} in the database
+ */
 @Repository
 public class UserDAO implements UserDAOI {
     @Autowired

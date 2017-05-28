@@ -27,9 +27,7 @@ public class TaskServiceTest {
     private Collection<Task> tasks = new ArrayList<Task>();
     private Task task1;
     private Project project1;
-    private Project project2;
     private Set<User> users = new HashSet<User>();
-    private int userId = 1;
 
     @Mock
     TaskDAO taskDAO;
@@ -87,7 +85,7 @@ public class TaskServiceTest {
         project1.setTasks(tasks);
         project1.setUsers(users);
 
-        project2 = new Project();
+        Project project2 = new Project();
         project2.setId(2);
         project2.setDescription("asdasd");
         project2.setDueDate(LocalDate.of(2017,11,10));

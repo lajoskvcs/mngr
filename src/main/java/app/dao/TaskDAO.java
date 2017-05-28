@@ -1,6 +1,5 @@
 package app.dao;
 
-import app.model.Project;
 import app.model.Task;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,8 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.Query;
 import java.util.Collection;
-import java.util.List;
 
+/**
+ * The Repository class for manipulating {@link app.model.Task Tasks} in the database
+ */
 @Repository
 public class TaskDAO implements TaskDAOI {
     @Autowired

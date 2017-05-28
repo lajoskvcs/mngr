@@ -6,6 +6,9 @@ import app.model.Task;
 
 import java.util.Collection;
 
+/**
+ * The interface for manipulating {@link app.model.Task Tasks} in the database
+ */
 public interface TaskDAOI {
 
     public Collection<Task> findAllByUserId(int userId);

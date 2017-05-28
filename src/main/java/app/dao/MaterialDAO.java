@@ -11,11 +11,18 @@ import java.util.Collection;
 import java.util.List;
 
 
+/**
+ * The Repository class for manipulating {@link app.model.Material Materials} in the database
+ */
 @Repository
 public class MaterialDAO implements MaterialDAOI {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    /**
+     * This method is a shorthand for session getting
+     * @return the current session
+     */
     private Session openSession() {
         return sessionFactory.getCurrentSession();
     }

@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.approval.UserApprovalHandler
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 /**
- *
+ * This class provides the basic authentication configuration for the application.
  */
 @Configuration
 public class CustomAuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
