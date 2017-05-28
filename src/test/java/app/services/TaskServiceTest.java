@@ -122,13 +122,13 @@ public class TaskServiceTest {
     public void test__findAll__should__return__with__all__the__tasks() {
         when(taskDAO.findAll(1)).thenReturn(tasks);
         Collection<Task> tasks = taskService.findAll(1);
-        assertThat(tasks.size(), is(equalTo(3)));
+        assertThat(tasks.size(), is(equalTo(5)));
     }
     @Test
     public void test__findAllByUserId__should__return__with__all__the__tasks() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
         Collection<Task> tasks = taskService.findAllByUserId(1);
-        assertThat(tasks.size(), is(equalTo(3)));
+        assertThat(tasks.size(), is(equalTo(5)));
     }
 
     @Test
@@ -175,7 +175,7 @@ public class TaskServiceTest {
     public void test__findInPlanTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
         int inPlanTasks = taskService.findInPlanTasks(1);
-        assertThat(inPlanTasks, is(equalTo(1)));
+        assertThat(inPlanTasks, is(equalTo(3)));
     }
 
     @Test
