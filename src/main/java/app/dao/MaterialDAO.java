@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public class MaterialDAO implements MaterialDAOI {
     /**
-     * This variable autowires the <code>SessionFactory</code> <code>Bean</code>.
+     * This variable autowire the <code>SessionFactory</code> <code>Bean</code>.
      */
     @Autowired
     protected SessionFactory sessionFactory;

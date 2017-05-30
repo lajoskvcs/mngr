@@ -21,6 +21,7 @@ public class Project {
     private LocalDate dueDate;
     private Collection<Task> tasks;
     private Set<User> users = new HashSet<User>(0);
+    private Note note;
 
     private double projectStatus;
     private boolean isDue;
@@ -31,7 +32,7 @@ public class Project {
      */
     @Transient
     public double getProjectStatus() {
-        if(tasks == null) {
+        if(tasks == null || tasks.isEmpty()) {
             return 0;
         }
         double allTasks = (double) tasks.size();
@@ -161,6 +162,20 @@ public class Project {
      */
     public void setTasks(Collection<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    /**
+     * Returns the {@link app.model.Note} what belongs to the {@link app.model.Project}.
+     * @return the {@link app.model.Note} what belongs to the {@link app.model.Project}
+     */
+    @JsonIgnore
+    @OneToOne(mappedBy = "project", cascade = CascadeType.REMOVE)
+    public Note getNote() {
+        return note;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
 
     @Override

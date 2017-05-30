@@ -67,8 +67,20 @@ public class NoteController {
     @RequestMapping(method = RequestMethod.PATCH, value = "/{id}/note")
     public ResponseEntity<Note> updateNote(@PathVariable("id") int id, @RequestBody Note patchedNote) {
         logger.info("[PATCH] /projects/"+id+"/note UserID: " + 1);
-        Note requestedNote = noteService.findByProjectId(id);
-        Note note = noteService.updateNote(requestedNote.getId(), patchedNote);
+        Note note = noteService.updateNote(id, patchedNote);
+        return ResponseEntity.ok(note);
+    }
+
+    /**
+     * Deletes the {@link app.model.Note Note} for the {@link app.model.Project Project}.
+     * @param id id of the {@link app.model.Project Project}
+     * @return A {@link org.springframework.http.ResponseEntity ResponseEntity} filled with the deleted {@link app.model.Note Note}
+     */
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}/note")
+    public ResponseEntity<Note> updateNote(@PathVariable("id") int id) {
+        logger.info("[DELETE] /projects/"+id+"/note");
+        Note noteToDelete = noteService.findByProjectId(id);
+        Note note = noteService.deleteNote(noteToDelete.getId());
         return ResponseEntity.ok(note);
     }
 

@@ -1,5 +1,6 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Time {
     /**
      * The {@link app.model.Task} where the time belongs to.
      */
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;

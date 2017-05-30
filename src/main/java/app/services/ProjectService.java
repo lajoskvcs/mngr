@@ -1,6 +1,9 @@
 package app.services;
 
+import app.dao.NoteDAO;
+import app.dao.NoteDAOI;
 import app.dao.ProjectDAO;
+import app.model.Note;
 import app.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,12 @@ public class ProjectService implements ProjectServiceI {
      */
     @Autowired
     private ProjectDAO projectDAO;
+
+    /**
+     * This variable autowire the <code>NoteDAO</code>.
+     */
+    @Autowired
+    private NoteDAO noteDAO;
 
     @Override
     public Collection<Project> findAll(int userId) {

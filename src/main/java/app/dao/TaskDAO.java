@@ -81,8 +81,12 @@ public class TaskDAO implements TaskDAOI {
         taskToUpdate.setName(task.getName());
         taskToUpdate.setDescription(task.getDescription());
         taskToUpdate.setStatus(task.getStatus());
+        taskToUpdate.setTimes(task.getTimes());
+        taskToUpdate.setMaterials(task.getMaterials());
+        taskToUpdate.setPriority(task.getPriority());
+        taskToUpdate.setHourlySalary(task.getHourlySalary());
 
-        openSession().update(taskToUpdate);
+        openSession().merge(taskToUpdate);
 
         return taskToUpdate;
     }

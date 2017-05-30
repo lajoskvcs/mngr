@@ -125,6 +125,7 @@ public class ProjectController {
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Project> deleteProject(@PathVariable("id") int id) {
         logger.info("[DELETE] /projects/"+id+" UserID: " + 1);
+
         Project project = projectService.deleteProject(id);
         return ResponseEntity.ok(project);
     }

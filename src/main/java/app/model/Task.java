@@ -1,5 +1,6 @@
 package app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -9,6 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class represents a task in the database.
@@ -69,9 +71,10 @@ public class Task {
     /**
      * The time entries for the task.
      */
+    @JsonManagedReference
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "task", cascade = CascadeType.MERGE)
-    private Collection<Time> times;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Time> times;
 
     /**
      * The total worked hours computed from time the entries.
@@ -79,10 +82,28 @@ public class Task {
     @Transient
     private Double workedHours;
 
+    /**
+     * The summed price of the {@code Materials}.
+     */
+    @Transient
+    private Double summedMaterialPrice;
 
-    @OneToMany(mappedBy = "task", cascade = CascadeType.MERGE)
+    /**
+     * The summed payment computed by the {@code summedMaterialPrice} and the {@code workedHours}.
+     */
+    @Transient
+    private Double totalPayment;
+
+    /**
+     * The total profit of the {@code Task}.
+     */
+    @Transient
+    private Double totalProfit;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Collection<Material> materials;
+    private Set<Material> materials;
 
     /**
      * Returns the id of the task.
@@ -184,7 +205,7 @@ public class Task {
      * Returns the Materials of the task.
      * @return the Materials of the task.
      */
-    public Collection<Material> getMaterials() {
+    public Set<Material> getMaterials() {
         return materials;
     }
 
@@ -192,7 +213,7 @@ public class Task {
      * Sets the Materials of the task.
      * @param materials the materials to be set
      */
-    public void setMaterials(Collection<Material> materials) {
+    public void setMaterials(Set<Material> materials) {
         this.materials = materials;
     }
 
@@ -216,7 +237,7 @@ public class Task {
      * Returns the time entries of the task.
      * @return the time entries of the task.
      */
-    public Collection<Time> getTimes() {
+    public Set<Time> getTimes() {
         return times;
     }
 
@@ -224,7 +245,7 @@ public class Task {
      * Sets the time entries of the task.
      * @param times the time to be set
      */
-    public void setTimes(List<Time> times) {
+    public void setTimes(Set<Time> times) {
         this.times = times;
     }
 
@@ -241,7 +262,38 @@ public class Task {
         Double summedHours = hours_list.stream().mapToDouble(minute -> {
             return minute / 60;
         }).sum();
-        System.out.println(summedHours);
         return summedHours;
+    }
+
+    /**
+     * Returns the summed price of the {@code Materials}.
+     * @return the summed price of the {@code Materials}.
+     */
+    public Double getSummedMaterialPrice() {
+        Double summedPrice = materials.stream()
+                .mapToDouble(material -> {
+                    return material.getActualPrice();
+                }).sum();
+        return summedPrice;
+    }
+
+    /**
+     * Returns the total payment of the {@code Task}.
+     * @return the total payment of the {@code Task}.
+     */
+    public Double getTotalPayment() {
+        return getSummedMaterialPrice() + getWorkedHours() * getHourlySalary();
+    }
+
+    /**
+     * Returns the total profit of the {@code Task}.
+     * @return the total profit of the {@code Task}
+     */
+    public Double getTotalProfit() {
+        Double totalProfitFromMaterials = materials.stream()
+                .mapToDouble(material -> {
+                    return material.getListPrice() * material.getPercent();
+                }).sum();
+        return totalProfitFromMaterials + getHourlySalary() * getWorkedHours();
     }
 }

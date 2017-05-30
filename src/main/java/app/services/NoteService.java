@@ -35,8 +35,8 @@ public class NoteService implements NoteServiceI {
     }
 
     @Override
-    public Note updateNote(int noteId, Note note) {
-        return noteDAO.updateNote(noteId, note);
+    public Note updateNote(int projectId, Note note) {
+        return noteDAO.updateNote(projectId, note);
     }
 
     @Override

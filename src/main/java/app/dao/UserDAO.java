@@ -62,7 +62,8 @@ public class UserDAO implements UserDAOI {
 
     @Override
     public User updateUser(int userId, User user) {
-        return null;
+        openSession().update(user);
+        return user;
     }
 
     @Override

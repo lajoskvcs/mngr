@@ -1,12 +1,16 @@
 package app.services;
 
+import app.dao.MaterialDAO;
 import app.dao.TaskDAO;
+import app.model.Material;
 import app.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * This {@code Service} class manipulates {@link app.model.Task Tasks} int the database.
@@ -20,6 +24,9 @@ public class TaskService implements TaskServiceI {
      */
     @Autowired
     private TaskDAO taskDAO;
+
+    @Autowired
+    private MaterialDAO materialDAO;
 
     @Override
     public Collection<Task> findAllByUserId(int userId) {

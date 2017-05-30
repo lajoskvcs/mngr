@@ -1,6 +1,7 @@
 package app.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,7 +25,7 @@ public class Material {
     private String storeName;
     @ManyToOne
     @JoinColumn(name = "task_id")
-    @JsonIgnore
+    @JsonBackReference
     private Task task;
     @Column(name="list_price")
     private double listPrice;

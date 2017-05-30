@@ -28,11 +28,11 @@ public interface NoteServiceI {
     public Note addNote(Note note);
     /**
      * This method updates a {@link app.model.Note} with the given id.
-     * @param noteId The id of the {@link app.model.Note} to be updated
+     * @param projectId The id of the {@link app.model.Project}
      * @param note The {@link app.model.Note} object what contains teh changes
      * @return The updated {@link app.model.Note}
      */
-    public Note updateNote(int noteId, Note note);
+    public Note updateNote(int projectId, Note note);
     /**
      * This method deletes a {@link app.model.Note} with the given id.
      * @param noteId The id of the {@link app.model.Note} to be deleted

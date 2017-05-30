@@ -32,9 +32,9 @@ public class CustomResourceServerConfigurer extends ResourceServerConfigurerAdap
     public void configure(HttpSecurity http) throws Exception {
         http
                 .anonymous().disable()
-                .requestMatchers().antMatchers("/users/current","/projects/**", "/tasks/**", "/dashboard/**")
+                .requestMatchers().antMatchers("/user/**","/users/current","/projects/**", "/tasks/**", "/dashboard/**")
                 .and().authorizeRequests()
-                .antMatchers("/users/current","/projects/**", "/tasks/**", "/dashboard/**").access("hasRole('USER')")
+                .antMatchers("/user/**","/users/current","/projects/**", "/tasks/**", "/dashboard/**").access("hasRole('USER')")
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 }

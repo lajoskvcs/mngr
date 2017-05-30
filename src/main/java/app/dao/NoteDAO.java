@@ -54,8 +54,8 @@ public class NoteDAO implements NoteDAOI {
     }
 
     @Override
-    public Note updateNote(int noteId, Note note) {
-        Note noteToUpdate = findById(noteId);
+    public Note updateNote(int projectId, Note note) {
+        Note noteToUpdate = findByProjectId(projectId);
         noteToUpdate.setNote(note.getNote());
         openSession().update(noteToUpdate);
         return noteToUpdate;
