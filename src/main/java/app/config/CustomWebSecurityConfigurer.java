@@ -34,7 +34,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     /**
      * This method builds the authentication manager with the custom UserDetailsManager.
      * @param authenticationManagerBuilder The builder class for authentication manager
-     * @throws Exception when the builder cant build the manager
+     * @throws Exception if there is a problem
      */
     @Autowired
     private void globalUserDetails(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -51,7 +51,7 @@ public class CustomWebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     /**
      * This class makes a Bean for the authentication manager.
      * @return an authenticationManager
-     * @throws Exception when no authenticationManager was built
+     * @throws Exception if there is a problem
      */
     @Bean
     @Override

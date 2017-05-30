@@ -54,6 +54,8 @@ public class DashboardController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser =  userService.findByName(auth.getName());
 
+        logger.info("[GET] /dashboard/ UserID: " + currentUser.getId());
+
         Dashboard dashboard = new Dashboard();
         dashboard.setProjectNumber(projectService.countAll(currentUser.getId()));
 

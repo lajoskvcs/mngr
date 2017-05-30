@@ -2,12 +2,16 @@ package app.controller;
 
 import app.model.Material;
 import app.model.Task;
+import app.model.User;
 import app.services.MaterialServiceI;
 import app.services.TaskServiceI;
+import app.services.UserServiceI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -33,7 +37,13 @@ public class TaskController {
      * This variable autowires the {@link app.services.MaterialService MaterialService} into the {@code Controller}.
      */
     @Autowired
-    MaterialServiceI materialService;
+    private MaterialServiceI materialService;
+
+    /**
+     * This variable autowires the {@link app.services.UserService} into the {@code Controller}.
+     */
+    @Autowired
+    private UserServiceI userService;
 
     /**
      * Finds the {@link app.model.Task Task} with the given {@code id}.
@@ -42,7 +52,9 @@ public class TaskController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<Task> findById(@PathVariable("id") int id) {
-        logger.info("[GET] /tasks/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[GET] /tasks/"+id+" UserID: " + currentUser.getId());
         Task task = taskService.findById(id);
         return ResponseEntity.ok(task);
     }
@@ -54,8 +66,9 @@ public class TaskController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Task> createTask(@RequestBody Task postedTask) {
-        logger.info("[POST] /tasks UserID: " + 1);
-        logger.debug(postedTask.toString());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[POST] /tasks/ UserID: " + currentUser.getId());
         Task task = taskService.addTask(postedTask);
         return ResponseEntity.created(URI.create("/tasks/" + task.getId())).body(task);
     }
@@ -68,7 +81,9 @@ public class TaskController {
      */
     @RequestMapping(method = RequestMethod.PATCH, value = "/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable("id") int id, @RequestBody Task patchedTask) {
-        logger.info("[PATCH] /tasks/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[PATCH] /tasks/"+id+" UserID: " + currentUser.getId());
         Task task = taskService.updateTask(id, patchedTask);
         return ResponseEntity.ok(task);
     }
@@ -80,7 +95,9 @@ public class TaskController {
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Task> deleteTask(@PathVariable("id") int id) {
-        logger.info("[DELETE] /tasks/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[DELETE] /tasks/"+id+" UserID: " + currentUser.getId());
         Task project = taskService.deleteTask(id);
         return ResponseEntity.ok(project);
     }
@@ -93,7 +110,9 @@ public class TaskController {
      */
     @RequestMapping(method = RequestMethod.POST, value = "/{id}/material")
     public ResponseEntity<Material> addMaterial(@PathVariable("id") int id, @RequestBody Material postedMaterial) {
-        logger.info("[POST] /tasks/"+id+"/material");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[POST] /tasks/"+id+"/material UserID: " + currentUser.getId());
         postedMaterial.setTask(taskService.findById(id));
         Material material = materialService.addMaterial(postedMaterial);
         return ResponseEntity.ok(material);

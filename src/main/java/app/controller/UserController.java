@@ -2,6 +2,8 @@ package app.controller;
 
 import app.model.User;
 import app.services.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
+
+    /**
+     * This variable inject the {@code Logger} into the {@code Controller}.
+     */
+    Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
     /**
      * This variable autowire the {@code UserService}.

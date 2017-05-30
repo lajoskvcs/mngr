@@ -34,6 +34,10 @@ public class AuthController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<User> register(@RequestBody User user) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[POST] /users/register");
+
         User createdUser = userService.createUser(user);
         return ResponseEntity.ok(createdUser);
     }
@@ -46,6 +50,7 @@ public class AuthController {
     public ResponseEntity<User> getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findByName(auth.getName());
+        logger.info("[GET] /users/current");
         return ResponseEntity.ok(user);
     }
 

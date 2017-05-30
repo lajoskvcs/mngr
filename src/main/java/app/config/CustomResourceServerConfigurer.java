@@ -16,7 +16,7 @@ public class CustomResourceServerConfigurer extends ResourceServerConfigurerAdap
     /**
      * This method makes the resource id fro the application.
      * @param resources The r
-     * @throws Exception when no {@code ResourceServerSecurityConfigurer} given
+     * @throws Exception if there is a problem
      */
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
@@ -26,7 +26,7 @@ public class CustomResourceServerConfigurer extends ResourceServerConfigurerAdap
     /**
      * This method configures the http routes with access rights.
      * @param http The {@code HttpSecurity} object
-     * @throws Exception
+     * @throws Exception if there is a problem
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {

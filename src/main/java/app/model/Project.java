@@ -174,6 +174,10 @@ public class Project {
         return note;
     }
 
+    /**
+     * Sets the {@link app.model.Note} what belongs to the {@link app.model.Project}.
+     * @param note the list of {@link app.model.Note Notes} to be set
+     */
     public void setNote(Note note) {
         this.note = note;
     }

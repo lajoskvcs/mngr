@@ -57,9 +57,10 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<Collection<Project>> findAll() {
-        logger.info("[GET] /projects UserID: " + 1);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User currentUser =  userService.findByName(auth.getName());
+        logger.info("[GET] /projects UserID: " + currentUser.getId());
+
         Collection<Project> projects = projectService.findAll(currentUser.getId());
         return ResponseEntity.ok(projects);
     }
@@ -71,7 +72,9 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ResponseEntity<Project> findById(@PathVariable("id") int id) {
-        logger.info("[GET] /projects/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[GET] /projects/" + id + " UserID: " + currentUser.getId());
         Project project = projectService.findById(id);
         return ResponseEntity.ok(project);
     }
@@ -83,7 +86,9 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.GET, value = "/{id}/tasks")
     public ResponseEntity<Collection<Task>> findAllTaskByProjectId(@PathVariable("id") int projectId) {
-        logger.info("[GET] /tasks ");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[GET] projects/"+projectId+"/task UserID: " + currentUser.getId());
         Collection<Task> tasks = taskService.findAll(projectId);
         return ResponseEntity.ok(tasks);
     }
@@ -95,7 +100,9 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Project> createProject(@RequestBody Project postedProject) {
-        logger.info("[POST] /projects UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[POST] /projects UserID: " + currentUser.getId());
         Project project = projectService.addProject(postedProject);
         Note note = new Note();
         note.setNote("");
@@ -112,7 +119,9 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.PATCH, value = "/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project patchedProject) {
-        logger.info("[PATCH] /projects/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[PATCH] /projects/"+id+" UserID: " + currentUser.getId());
         Project project = projectService.updateProject(id, patchedProject);
         return ResponseEntity.ok(project);
     }
@@ -124,7 +133,9 @@ public class ProjectController {
      */
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     public ResponseEntity<Project> deleteProject(@PathVariable("id") int id) {
-        logger.info("[DELETE] /projects/"+id+" UserID: " + 1);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser =  userService.findByName(auth.getName());
+        logger.info("[DELETE] /projects/"+id+" UserID: " + currentUser.getId());
 
         Project project = projectService.deleteProject(id);
         return ResponseEntity.ok(project);
