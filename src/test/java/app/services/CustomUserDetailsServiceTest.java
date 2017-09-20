@@ -32,19 +32,19 @@ public class CustomUserDetailsServiceTest {
 
     @Before
     public void setUp() {
-        user1 = new User();
-        user1.setId(1);
-        user1.setUsername("user1");
-        user1.setPassword("asd123");
-        user1.setBornDate(LocalDate.of(1994,10,1));
+        this.user1 = new User();
+        this.user1.setId(1);
+        this.user1.setUsername("user1");
+        this.user1.setPassword("asd123");
+        this.user1.setBornDate(LocalDate.of(1994,10,1));
     }
 
     @Test
     public void test__loadUserByUsername__should__return__the__user__with__correct__parameters() {
-        when(userDAO.findByName("user1")).thenReturn(user1);
+        when(userDAO.findByName("user1")).thenReturn(this.user1);
         org.springframework.security.core.userdetails.UserDetails returnedUser = userDetailsService.loadUserByUsername("user1");
-        assertThat(returnedUser.getUsername(), is(equalTo(user1.getUsername())));
-        assertThat(returnedUser.getPassword(), is(equalTo(user1.getPassword())));
+        assertThat(returnedUser.getUsername(), is(equalTo(this.user1.getUsername())));
+        assertThat(returnedUser.getPassword(), is(equalTo(this.user1.getPassword())));
         assertThat(returnedUser.isEnabled(), is(true));
     }
 }

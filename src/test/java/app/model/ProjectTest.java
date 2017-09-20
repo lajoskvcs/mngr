@@ -26,6 +26,9 @@ public class ProjectTest {
     private Set<User> users = new HashSet<User>();
     private Collection<Task> tasks = new ArrayList<Task>();
 
+    /**
+     * Setup for the test
+     */
     @Before
     public void setUp() {
         user1 = new User();
@@ -108,10 +111,17 @@ public class ProjectTest {
         project2.setUsers(users);
     }
 
+    /**
+     * Test for getProjectStatus
+     */
     @Test
     public void test__getProjectStatus__should__return__the__correct__percentage() {
         assertThat(project.getProjectStatus(), is(equalTo(40.0)));
     }
+
+    /**
+     * Test for getProjectStatus
+     */
     @Test
     public void test__getProjectStatus__should__return__the__zero() {
         assertThat(project2.getProjectStatus(), is(equalTo(0.0)));
