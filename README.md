@@ -1,6 +1,6 @@
 # MNGR 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/9f2bfec07b8a40e2a94907bb0a1d455f)](https://www.codacy.com/app/realdiwin/mngr?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=realdiwin/mngr&amp;utm_campaign=Badge_Grade) 
-[![Build Status](https://travis-ci.org/realdiwin/mngr.svg?branch=master)](https://travis-ci.org/realdiwin/mngr)
+[![Build Status](https://travis-ci.org/diwiny/mngr.svg?branch=master)](https://travis-ci.org/realdiwin/mngr)
 
 > M - Management  
 > N - Not  
