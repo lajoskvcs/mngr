@@ -22,19 +22,47 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class TaskServiceTest {
+
+    /**
+     *
+     */
     private Collection<Task> tasks = new ArrayList<Task>();
+
+    /**
+     *
+     */
     private Task task1;
+
+    /**
+     *
+     */
     private Project project1;
+
+    /**
+     *
+     */
     private Set<User> users = new HashSet<User>();
 
+    /**
+     *
+     */
     @Mock
-    TaskDAO taskDAO;
+    private TaskDAO taskDAO;
 
+    /**
+     *
+     */
     @InjectMocks
     private TaskService taskService = new TaskService();
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         User user1 = new User();
@@ -118,12 +146,19 @@ public class TaskServiceTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findAll__should__return__with__all__the__tasks() {
         when(taskDAO.findAll(1)).thenReturn(tasks);
         Collection<Task> tasks = taskService.findAll(1);
         assertThat(tasks.size(), is(equalTo(5)));
     }
+
+    /**
+     *
+     */
     @Test
     public void test__findAllByUserId__should__return__with__all__the__tasks() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
@@ -131,6 +166,9 @@ public class TaskServiceTest {
         assertThat(tasks.size(), is(equalTo(5)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findAllByUserId__should__return__null() {
         when(taskDAO.findAllByUserId(2)).thenReturn(null);
@@ -138,6 +176,9 @@ public class TaskServiceTest {
         assertThat(tasks, is(equalTo(null)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findById__should__return__with__the__correct__project() {
         when(taskDAO.findById(1)).thenReturn(task1);
@@ -146,6 +187,9 @@ public class TaskServiceTest {
         assertThat(returnedTasks.getName(), is(equalTo(task1.getName())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__addTask__should__return__with__the__created() {
         when(taskDAO.addTask(task1)).thenReturn(task1);
@@ -154,6 +198,9 @@ public class TaskServiceTest {
         assertThat(returnedTask.getName(), is(equalTo(task1.getName())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__update__task__should__return__with__the__updated__task() {
         when(taskDAO.updateTask(1, task1)).thenReturn(task1);
@@ -162,7 +209,9 @@ public class TaskServiceTest {
         assertThat(returnedTask.getName(), is(equalTo(task1.getName())));
     }
 
-
+    /**
+     *
+     */
     @Test
     public void test__delete__task__should__return__with__the__deleted__task() {
         when(taskDAO.deleteTask(1)).thenReturn(task1);
@@ -171,6 +220,9 @@ public class TaskServiceTest {
         assertThat(returnedTask.getName(), is(equalTo(task1.getName())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findInPlanTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
@@ -178,12 +230,18 @@ public class TaskServiceTest {
         assertThat(inPlanTasks, is(equalTo(3)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findInPlanTasks__should__return__zero() {
         int inPlanTasks = taskService.findInPlanTasks(13);
         assertThat(inPlanTasks, is(equalTo(0)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findInProgressTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
@@ -191,12 +249,18 @@ public class TaskServiceTest {
         assertThat(inProgressTasks, is(equalTo(1)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findInProgressTasks__should__return__zero() {
         int inProgressTasks = taskService.findInProgressTasks(101);
         assertThat(inProgressTasks, is(equalTo(0)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findDoneTasks__should__return__correct__number() {
         when(taskDAO.findAllByUserId(1)).thenReturn(tasks);
@@ -204,6 +268,9 @@ public class TaskServiceTest {
         assertThat(doneTasks, is(equalTo(1)));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findDoneTasks__should__return__zero() {
         int doneTasks = taskService.findDoneTasks(1);

@@ -17,21 +17,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
+/**
+ * JUnit test class for Project tests.
+ */
 @RunWith(MockitoJUnitRunner.class)
-
 public class ProjectTest {
     private Project project;
     private Project project2;
-    private User user1;
     private Set<User> users = new HashSet<User>();
     private Collection<Task> tasks = new ArrayList<Task>();
 
     /**
-     * Setup for the test
+     * Setup for the tests
      */
     @Before
     public void setUp() {
-        user1 = new User();
+        User user1 = new User();
         user1.setId(1);
         user1.setUsername("user1");
 
@@ -112,7 +113,7 @@ public class ProjectTest {
     }
 
     /**
-     * Test for getProjectStatus
+     * Test getProjectStatus method
      */
     @Test
     public void test__getProjectStatus__should__return__the__correct__percentage() {
@@ -120,7 +121,7 @@ public class ProjectTest {
     }
 
     /**
-     * Test for getProjectStatus
+     * Test getProjectStatus method
      */
     @Test
     public void test__getProjectStatus__should__return__the__zero() {

@@ -18,20 +18,35 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class NoteServiceTest {
+
+    /**
+     *
+     */
     private Note note;
-    private Project project;
 
+    /**
+     *
+     */
     @Mock
-    NoteDAO noteDAO;
+    private NoteDAO noteDAO;
 
+    /**
+     *
+     */
     @InjectMocks
     private NoteService noteService = new NoteService();
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
-        project = new Project();
+        Project project = new Project();
         project.setId(1);
         project.setDescription("Some description");
         project.setDueDate(LocalDate.of(2017,10,10));
@@ -44,6 +59,9 @@ public class NoteServiceTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findByProjectId__should__return__the__note() {
         when(noteDAO.findByProjectId(1)).thenReturn(note);
@@ -51,6 +69,9 @@ public class NoteServiceTest {
         assertThat(returnedNote.getNote(), is(equalTo(note.getNote())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findById__should__return__with__the__correct__note() {
         when(noteDAO.findById(1)).thenReturn(note);
@@ -58,6 +79,9 @@ public class NoteServiceTest {
         assertThat(returnedNotes.getNote(), is(equalTo(note.getNote())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__addNote__should__return__with__the__created() {
         when(noteDAO.addNote(note)).thenReturn(note);
@@ -65,6 +89,9 @@ public class NoteServiceTest {
         assertThat(returnedNote.getNote(), is(equalTo(note.getNote())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__update__note__should__return__with__the__updated__note() {
         when(noteDAO.updateNote(1, note)).thenReturn(note);
@@ -72,12 +99,13 @@ public class NoteServiceTest {
         assertThat(returnedNote.getNote(), is(equalTo(note.getNote())));
     }
 
-
+    /**
+     *
+     */
     @Test
     public void test__delete__note__should__return__with__the__deleted__note() {
         when(noteDAO.deleteNote(1)).thenReturn(note);
         Note returnedNote = noteService.deleteNote(1);
         assertThat(returnedNote.getNote(), is(equalTo(note.getNote())));
     }
-
 }

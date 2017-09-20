@@ -20,16 +20,32 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class CustomUserDetailsServiceTest {
+
+    /**
+     *
+     */
     private User user1;
 
+    /**
+     *
+     */
     @Mock
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
+    /**
+     *
+     */
     @InjectMocks
     private CustomUserDetailsService userDetailsService = new CustomUserDetailsService();
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         this.user1 = new User();
@@ -39,6 +55,9 @@ public class CustomUserDetailsServiceTest {
         this.user1.setBornDate(LocalDate.of(1994,10,1));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__loadUserByUsername__should__return__the__user__with__correct__parameters() {
         when(userDAO.findByName("user1")).thenReturn(this.user1);

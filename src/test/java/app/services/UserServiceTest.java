@@ -24,17 +24,37 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 
+/**
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
+
+    /**
+     *
+     */
     private User user1;
+
+    /**
+     *
+     */
     private User user2;
 
+    /**
+     *
+     */
     @Mock
     private UserDAO userDAO;
 
+    /**
+     *
+     */
     @InjectMocks
     private UserService userService = new UserService();
 
+    /**
+     *
+     */
     @Before
     public void setUp() {
         user1 = new User();
@@ -56,6 +76,9 @@ public class UserServiceTest {
         user2.setBornDate(LocalDate.of(1994,10,1));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__findById__should__return__the__correct__user() {
         when(userDAO.findById(1)).thenReturn(user1);
@@ -65,6 +88,10 @@ public class UserServiceTest {
         returnedUser = userService.findById(2);
         assertThat(returnedUser.getUsername(), is(equalTo(user2.getUsername())));
     }
+
+    /**
+     *
+     */
     @Test
     public void test__findByUsername__should__return__the__correct__user() {
         when(userDAO.findByName("user1")).thenReturn(user1);
@@ -75,17 +102,27 @@ public class UserServiceTest {
         assertThat(returnedUser.getId(), is(equalTo(user2.getId())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__isExists__should__return__true() {
         when(userDAO.isExists("user1")).thenReturn(true);
         assertThat(userService.isExists("user1"), is(true));
     }
+
+    /**
+     *
+     */
     @Test
     public void test__isExists__should__return__false() {
         when(userDAO.isExists("user3")).thenReturn(false);
         assertThat(userService.isExists("user3"), is(false));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__addUser__should__return__with__the__created__user() {
         when(userDAO.createUser(user1)).thenReturn(user1);
@@ -94,6 +131,9 @@ public class UserServiceTest {
         assertThat(returnedUser.getUsername(), is(equalTo(user1.getUsername())));
     }
 
+    /**
+     *
+     */
     @Test
     public void test__update__user__should__return__with__the__updated__user() {
         when(userDAO.updateUser(1, user1)).thenReturn(user1);
@@ -102,7 +142,9 @@ public class UserServiceTest {
         assertThat(returnedUser.getUsername(), is(equalTo(user1.getUsername())));
     }
 
-
+    /**
+     *
+     */
     @Test
     public void test__delete__user__should__return__with__the__deleted__user() {
         when(userDAO.deleteUser(1)).thenReturn(user1);
@@ -110,7 +152,4 @@ public class UserServiceTest {
         assertThat(returnedUser.getId(), is(equalTo(user1.getId())));
         assertThat(returnedUser.getUsername(), is(equalTo(user1.getUsername())));
     }
-
-
-
 }
