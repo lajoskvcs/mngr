@@ -43,7 +43,7 @@
     </licenses>
     <properties>
         <!-- Project specific -->
-        <hibernate.version>5.2.5.Final</hibernate.version>
+        <hibernate.version>5.3.20.Final</hibernate.version>
         <mysql.connector.version>5.1.40</mysql.connector.version>
         <springframework.version>4.3.7.RELEASE</springframework.version>
         <springsecurity.version>4.2.2.RELEASE</springsecurity.version>
